@@ -14,6 +14,7 @@ import { StackProps } from "../navigation/StackGroup";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ajax } from "../../../helpers";
 import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
+import { getHeroMap } from "../../domain/mappers/getHeromap";
 
 export default function HomeScreen() {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
@@ -38,15 +39,19 @@ export default function HomeScreen() {
         ListFooterComponent={() => <ActivityIndicator size={"large"} />}
         data={data}
         keyExtractor={({ id }) => id}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.name}</Text>
-            <Image
-              style={{ width: 150, height: 150 }}
-              source={{ uri: item.image.url }}
-            />
-          </View>
-        )}
+        renderItem={({ item }) => {
+          const { title, description, image } = getHeroMap(item);
+          return (
+            <View>
+              <Text>{title}</Text>
+              <Image
+                style={{ width: 150, height: 150 }}
+                source={{ uri: image }}
+              />
+              <Text>{description}</Text>
+            </View>
+          );
+        }}
       />
     </View>
   );

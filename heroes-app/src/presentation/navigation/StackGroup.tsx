@@ -2,10 +2,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
 import BottomTabs from "./BottomTabs";
 import HeroeScreen from "../screens/HeroeScreen";
+import { Hero } from "../../data/models/heroe";
 
 export type StackProps = {
   HOME: undefined;
-  HERO: { id: number; title: string };
+  HERO: Hero;
 };
 
 const Stack = createStackNavigator<StackProps>();
