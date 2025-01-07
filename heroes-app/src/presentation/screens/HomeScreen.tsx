@@ -18,8 +18,9 @@ import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi
 export default function HomeScreen() {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
   const [data, setData] = useState([] as HeroResponseAPI[]);
+  const lastHeroID = useRef(1);
   const getData = async () => {
-    const newHeroes = Array.from({ length: 5 }, (_, i) => data.length + 1 + i);
+    const newHeroes = Array.from({ length: 5 }, (_) => lastHeroID.current++);
     const newHeroesResponse = await Promise.all(
       newHeroes.map((heroID) => ajax<HeroResponseAPI>(`${apiURL}/${heroID}`))
     );
