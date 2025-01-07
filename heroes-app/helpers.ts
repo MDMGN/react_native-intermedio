@@ -1,7 +1,7 @@
-export const ajax = (url: string) => {
-  fetch(url)
+export const ajax = <T>(url: string): Promise<T> => {
+  return fetch(url)
     .then((resp) =>
-      resp.ok ? resp.json() : resp.json().then((error) => error)
+      resp.ok ? resp.json() : resp.json().then((error) => Promise.reject(error))
     )
-    .then((data) => data);
+    .then((data: T) => data);
 };

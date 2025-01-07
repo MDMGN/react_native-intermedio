@@ -5,6 +5,8 @@ import apiURL from "../../../config/api/superHeroesApi";
 import { useNavigation } from "@react-navigation/native";
 import { StackProps } from "../navigation/StackGroup";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { ajax } from "../../../helpers";
+import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
 
 export default function HomeScreen() {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
@@ -12,9 +14,9 @@ export default function HomeScreen() {
   useEffect(() => {
     const getData = async () => {
       const data = await Promise.all([
-        fetch(`${apiURL}/1`).then((resp) => resp.json()),
-        fetch(`${apiURL}/2`).then((resp) => resp.json()),
-        fetch(`${apiURL}/3`).then((resp) => resp.json()),
+        ajax<HeroResponseAPI>(`${apiURL}/2`),
+        ajax<HeroResponseAPI>(`${apiURL}/1`),
+        ajax<HeroResponseAPI>(`${apiURL}/3`),
       ]);
       setData(data);
       console.log(data);
