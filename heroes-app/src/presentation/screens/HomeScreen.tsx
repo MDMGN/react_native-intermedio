@@ -17,9 +17,9 @@ export default function HomeScreen() {
         fetch(`${apiURL}/3`).then((resp) => resp.json()),
       ]);
       setData(data);
+      console.log(data);
     };
     getData();
-    console.log(data);
   }, []);
   return (
     <View style={globalStyles.container}>
