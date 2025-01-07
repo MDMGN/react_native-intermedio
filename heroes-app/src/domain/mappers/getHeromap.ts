@@ -1,5 +1,5 @@
-import { Hero } from "../../data/models/heroe";
-import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
+import type { Hero } from "../../data/models/heroe";
+import type { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
 
 export const getHeroMap = (data: HeroResponseAPI): Hero => {
   return {
