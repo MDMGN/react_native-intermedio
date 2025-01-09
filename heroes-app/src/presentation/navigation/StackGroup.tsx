@@ -19,7 +19,6 @@ export default function StackGroup() {
         component={BottomTabs}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen name="HERO" component={HeroeScreen} />
     </Stack.Navigator>
   );

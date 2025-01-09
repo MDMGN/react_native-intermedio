@@ -8,13 +8,13 @@ import {
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { globalStyles } from "../themes/globalStyles";
-import apiURL from "../../../config/api/superHeroesApi";
+import apiURL from "../../config/api/superHeroesApi";
 import { useNavigation } from "@react-navigation/native";
 import { StackProps } from "../navigation/StackGroup";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ajax } from "../../../helpers";
+import { ajax } from "../../config/herlpers/ajax";
 import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
-import { getHeroMap } from "../../domain/mappers/getHeromap";
+import { getMapHero } from "../../domain/mappers/getMapHero";
 
 export default function HomeScreen() {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
@@ -25,6 +25,7 @@ export default function HomeScreen() {
     const newHeroesResponse = await Promise.all(
       newHeroes.map((heroID) => ajax<HeroResponseAPI>(`${apiURL}/${heroID}`))
     );
+
     setData((previousValue) => [...previousValue, ...newHeroesResponse]);
     console.log(data);
   };
@@ -40,7 +41,7 @@ export default function HomeScreen() {
         data={data}
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => {
-          const { title, description, image } = getHeroMap(item);
+          const { title, description, image } = getMapHero(item);
           return (
             <View>
               <Text>{title}</Text>
