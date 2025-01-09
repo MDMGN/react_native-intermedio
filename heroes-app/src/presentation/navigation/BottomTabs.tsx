@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SearchScreen from "../screens/SearchScreen";
+import { useState } from "react";
 
 type BottomProps = {
   HOME: undefined;
