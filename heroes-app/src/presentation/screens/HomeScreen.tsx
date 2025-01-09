@@ -1,11 +1,4 @@
-import {
-  View,
-  Button,
-  FlatList,
-  Text,
-  Image,
-  ActivityIndicator,
-} from "react-native";
+import { View, FlatList, Text, Image, ActivityIndicator } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { globalStyles } from "../themes/globalStyles";
 import apiURL from "../../config/api/superHeroesApi";
