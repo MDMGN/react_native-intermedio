@@ -1,22 +1,39 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { globalStyles } from "../themes/globalStyles";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { StackProps } from "../navigation/StackGroup";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function HeroeScreen() {
-  const { params, key, path } = useRoute<RouteProp<StackProps, "HERO">>();
+  const {
+    params: { title, description, image },
+    key,
+    path,
+  } = useRoute<RouteProp<StackProps, "HERO">>();
   const { setOptions } = useNavigation();
 
   useLayoutEffect(() => {
     setOptions({
-      title: params.title,
+      title,
     });
   }, []);
 
   return (
     <View style={globalStyles.container}>
-      <Text>HeroScreen</Text>
+      <ScrollView
+        contentContainerStyle={{
+          gap: 20,
+          alignItems: "center",
+        }}
+      >
+        <Text style={globalStyles.title}>{title}</Text>
+        <Image
+          source={{ uri: image }}
+          style={{ aspectRatio: "16/12", resizeMode: "stretch", height: 300 }}
+        />
+        <Text>{description}</Text>
+      </ScrollView>
     </View>
   );
 }

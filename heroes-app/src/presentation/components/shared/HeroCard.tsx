@@ -9,8 +9,8 @@ type Props = {
 export function HeroCard({ title, image }: Props) {
   return (
     <View style={globalStyles.cardContainer}>
-      <Text style={globalStyles.cardTitle}>{title}</Text>
-      <Image style={globalStyles.cardImage} source={{ uri: image }} />
+      <Text style={globalStyles.title}>{title}</Text>
+      <Image style={[globalStyles.cardImage]} source={{ uri: image }} />
     </View>
   );
 }
