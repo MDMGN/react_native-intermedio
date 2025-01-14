@@ -1,5 +1,4 @@
 import { View, Text, Image } from "react-native";
-import { Hero } from "../../../domain/models/heroe";
 import { globalStyles } from "../../themes/globalStyles";
 
 type Props = {
