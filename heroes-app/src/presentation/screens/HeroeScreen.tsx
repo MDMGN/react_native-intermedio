@@ -30,18 +30,17 @@ export default function HeroeScreen() {
           source={{ uri: image }}
           style={{ aspectRatio: "16/12", resizeMode: "stretch", height: 300 }}
         />
-        <Text style={styles.descrition}>{description}</Text>
+        <Text style={styles.description}>{description}</Text>
       </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  descrition: {
+  description: {
     padding: "5%",
     textAlign: "left",
     width: "80%",
     writingDirection: "auto",
-    filter: "invert(100%)",
   },
 });

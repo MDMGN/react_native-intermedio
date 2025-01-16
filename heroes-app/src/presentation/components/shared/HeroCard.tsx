@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import { globalStyles } from "../../themes/globalStyles";
+import { TextInput } from "react-native-gesture-handler";
 
 type Props = {
   title: string;
