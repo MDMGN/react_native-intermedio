@@ -128,29 +128,16 @@ Esto es útil para limitar la frecuencia de ejecución de funciones, como maneja
 ### Desglose de un Ejemplo Típico de `throttle`
 
 ```javascript
-export const throttle = (func, limit) => {
-  let lastFunc; // Último timeout configurado
-  let lastRan; // Última vez que la función fue ejecutada
-
-  return (...args) => {
-    const now = Date.now(); // Hora actual en milisegundos
-    if (!lastRan) {
-      // Si la función nunca ha corrido, se ejecutá inmediatamente
-      func.apply(null, args);
-      lastRan = now;
-    } else {
-      // Si la función ha sido ejecutada, configuro un timeout
-      clearTimeout(lastFunc); // Elimino cualquier timeout previo
-      lastFunc = setTimeout(() => {
-        // Si ya pasó el tiempo límite, ejecuto la función
-        if (now - lastRan >= limit) {
-          func.apply(null, args);
-          lastRan = Date.now();
-        }
-      }, limit - (now - lastRan)); // Restante del límite de tiempo
+export function throttle(func, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
-};
+}
 ```
 
 ---
@@ -162,21 +149,16 @@ export const throttle = (func, limit) => {
    - `func`: La función que quieres "throttlear".
    - `limit`: El intervalo de tiempo mínimo (en milisegundos) entre ejecuciones.
 
-2. **`lastRan`:**
+2. **`inThrottle`:**
 
-   - Registra la última vez que `func` fue ejecutada.
-   - Nos ayuda a verificar si ha pasado suficiente tiempo (`limit`) desde la última ejecución.
+- Es un flag (bandera) que ayuda a controlar si la función puede ejecutarse o si debe esperar.
+  Si inThrottle es false, la función se ejecutará. Luego, se establece inThrottle en true y la ejecución se bloquea hasta que haya pasado el limit de tiempo.
 
-3. **`lastFunc`:**
+3. **`setTimeout`:**
 
-   - Almacena el identificador del `setTimeout` activo.
-   - Si un nuevo evento ocurre antes de que el temporizador termine, cancela el anterior con `clearTimeout`.
+   Utilizamos `setTimeout` para restablecer `inThrottle` a `false` después de que haya transcurrido el tiempo especificado por `limit`. Esto permite la ejecución de `func` nuevamente.
 
-4. **`setTimeout`:**
-
-   - Configura un temporizador para ejecutar la función después de que pase el tiempo restante para cumplir con el límite (`limit`).
-
-5. **`apply`:**
+4. **`apply`:**
    - Ejecuta la función `func` con los argumentos originales (`args`) que se pasaron al `throttle`.
 
 ---
