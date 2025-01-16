@@ -31,9 +31,7 @@ export default function HomeScreen() {
     const newHeroesResponse = await Promise.all(
       newHeroes.map((heroID) => ajax<HeroResponseAPI>(`${apiURL}/${heroID}`))
     );
-
     setData((previousValue) => [...previousValue, ...newHeroesResponse]);
-    console.log(data);
   };
   useEffect(() => {
     getData();
