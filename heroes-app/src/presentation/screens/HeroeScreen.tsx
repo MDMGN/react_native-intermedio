@@ -1,4 +1,12 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Animated,
+  useAnimatedValue,
+  Easing,
+} from "react-native";
 import { globalStyles } from "../themes/globalStyles";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useLayoutEffect } from "react";
@@ -10,6 +18,10 @@ export default function HeroeScreen() {
     params: { title, description, image },
   } = useRoute<RouteProp<StackProps, "HERO">>();
   const { setOptions } = useNavigation();
+  const scrollAnima = useAnimatedValue(0);
+  const MIN_VALUE = 70,
+    MAX_VALUE = 200,
+    DISTANCE_HEIGHT = MAX_VALUE - MIN_VALUE;
 
   useLayoutEffect(() => {
     setOptions({
@@ -24,8 +36,37 @@ export default function HeroeScreen() {
           gap: 20,
           alignItems: "center",
         }}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollAnima } } }],
+          {
+            useNativeDriver: false,
+          }
+        )}
       >
-        <Text style={globalStyles.title}>{title}</Text>
+        <Animated.View
+          style={[
+            {
+              filter: "drop-shadow(0px 0px 10px black)",
+              justifyContent: "center",
+              marginVertical: 10,
+              marginHorizontal: 5,
+              width: "100%",
+              backgroundColor: "#FF0000",
+              opacity: scrollAnima.interpolate({
+                inputRange: [0, DISTANCE_HEIGHT],
+                outputRange: [0.7, 1],
+                extrapolate: "clamp",
+              }),
+              height: scrollAnima.interpolate({
+                inputRange: [0, DISTANCE_HEIGHT],
+                outputRange: [MAX_VALUE, MIN_VALUE],
+                extrapolate: "clamp",
+              }),
+            },
+          ]}
+        >
+          <Text style={globalStyles.title}>{title}</Text>
+        </Animated.View>
         <Image
           source={{ uri: image }}
           style={{ aspectRatio: "16/12", resizeMode: "stretch", height: 300 }}
