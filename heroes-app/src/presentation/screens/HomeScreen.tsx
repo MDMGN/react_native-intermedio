@@ -50,7 +50,7 @@ export default function HomeScreen() {
           const hero = getMapHero(item);
           return (
             <Pressable onPress={() => navigate("HERO", hero)}>
-              <HeroCard image={hero.image} title={hero.title} />;
+              <HeroCard image={hero.image} title={hero.title} />
             </Pressable>
           );
         }}
