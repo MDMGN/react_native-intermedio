@@ -32,6 +32,7 @@ export default function HeroeScreen() {
   return (
     <View style={globalStyles.container}>
       <ScrollView
+        scrollEventThrottle={20}
         contentContainerStyle={{
           gap: 20,
           alignItems: "center",
@@ -48,7 +49,7 @@ export default function HeroeScreen() {
             {
               filter: "drop-shadow(0px 0px 10px black)",
               justifyContent: "center",
-              marginVertical: 10,
+              marginVertical: 100,
               marginHorizontal: 5,
               width: "100%",
               backgroundColor: "#FF0000",
