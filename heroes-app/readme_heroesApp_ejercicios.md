@@ -58,3 +58,30 @@
    - Renderiza los resultados en un `FlatList` con `SearchItem`.
 
    - Agrega el evento `onPress` al componente `SearchItem` para navegar a `HeroeScreen` y pasa las props necesarias para mostrar los detalles del héroe.
+
+Claro, aquí tienes una versión corregida y mejor redactada de las instrucciones:
+
+---
+
+### **7. Filtrar héroes en las `Top Tabs`**
+
+- Crea 3 pantallas (`Top Tabs Screens`):
+
+  - `MarvelScreen`
+  - `DCScreen`
+  - `OthersScreen`
+
+- Agrega el tipado correspondiente y el enrutamiento necesario para estas pantallas.
+- Cada pantalla debe filtrar y mostrar a los héroes según su propiedad `publisher`:
+
+  - **`MarvelScreen`**: muestra solo héroes de Marvel.
+  - **`DCScreen`**: muestra solo héroes de DC.
+  - **`OthersHeroesScreen`**: muestra héroes cuyo `publisher` no sea ni Marvel ni DC.
+
+- Implementa nuevos métodos en el repositorio para buscar dinámicamente héroes según su propiedad `publisher` en la API.
+
+- Las pantallas deben hacer una llamada a la API para cargar y mostrar 5 héroes inicialmente, e ir cargando más héroes incrementales conforme el usuario se desplace en el `FlatList` de cada pantalla.
+
+- Cada `item` del `FlatList` debe ser una tarjeta que muestre:
+  - El **título** del héroe.
+  - Una **imagen** del héroe.
