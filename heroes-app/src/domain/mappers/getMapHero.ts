@@ -1,7 +1,10 @@
-import type { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
+import type {
+  HeroResponseAPI,
+  SearchItemResult,
+} from "../../infrastructure/interfaces/heroResponseApi";
 import type { Hero } from "../models/heroe";
 
-export const getMapHero = (data: HeroResponseAPI): Hero => {
+export const getMapHero = (data: HeroResponseAPI | SearchItemResult): Hero => {
   return {
     title: data.name,
     image: data.image.url,

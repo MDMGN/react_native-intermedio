@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SearchScreen from "../screens/SearchScreen";
+import TopTabs from "./TopTabs";
 
 type BottomProps = {
   HOME: undefined;
@@ -15,7 +16,7 @@ export default function BottomTabs() {
     <BottomTab.Navigator>
       <BottomTab.Screen
         name="HOME"
-        component={HomeScreen}
+        component={TopTabs}
         options={{
           tabBarIcon: ({}) => <AntDesign name="home" size={24} color="black" />,
         }}
@@ -24,6 +25,7 @@ export default function BottomTabs() {
         name="SEARCH"
         component={SearchScreen}
         options={{
+          title: "",
           tabBarIcon: ({}) => (
             <AntDesign name="search1" size={24} color="black" />
           ),
