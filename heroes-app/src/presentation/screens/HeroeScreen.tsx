@@ -31,6 +31,30 @@ export default function HeroeScreen() {
 
   return (
     <View style={globalStyles.container}>
+      <Animated.View
+        style={[
+          {
+            filter: "drop-shadow(0px 0px 10px black)",
+            justifyContent: "center",
+            marginVertical: 100,
+            marginHorizontal: 5,
+            width: "100%",
+            backgroundColor: "#FF0000",
+            opacity: scrollAnima.interpolate({
+              inputRange: [0, DISTANCE_HEIGHT],
+              outputRange: [0.7, 1],
+              extrapolate: "clamp",
+            }),
+            height: scrollAnima.interpolate({
+              inputRange: [0, DISTANCE_HEIGHT],
+              outputRange: [MAX_VALUE, MIN_VALUE],
+              extrapolate: "clamp",
+            }),
+          },
+        ]}
+      >
+        <Text style={globalStyles.title}>{title}</Text>
+      </Animated.View>
       <ScrollView
         scrollEventThrottle={20}
         contentContainerStyle={{
@@ -44,30 +68,6 @@ export default function HeroeScreen() {
           }
         )}
       >
-        <Animated.View
-          style={[
-            {
-              filter: "drop-shadow(0px 0px 10px black)",
-              justifyContent: "center",
-              marginVertical: 100,
-              marginHorizontal: 5,
-              width: "100%",
-              backgroundColor: "#FF0000",
-              opacity: scrollAnima.interpolate({
-                inputRange: [0, DISTANCE_HEIGHT],
-                outputRange: [0.7, 1],
-                extrapolate: "clamp",
-              }),
-              height: scrollAnima.interpolate({
-                inputRange: [0, DISTANCE_HEIGHT],
-                outputRange: [MAX_VALUE, MIN_VALUE],
-                extrapolate: "clamp",
-              }),
-            },
-          ]}
-        >
-          <Text style={globalStyles.title}>{title}</Text>
-        </Animated.View>
         <Image
           source={{ uri: image }}
           style={{ aspectRatio: "16/12", resizeMode: "stretch", height: 300 }}

@@ -5,7 +5,7 @@ import apiURL from "../../config/api/superHeroesApi";
 import { useNavigation } from "@react-navigation/native";
 import { StackProps } from "../navigation/StackGroup";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ajax } from "../../config/herlpers/ajax";
+import { ajax } from "../../config/helpers/ajax";
 import { HeroResponseAPI } from "../../infrastructure/interfaces/heroResponseApi";
 import { getMapHero } from "../../domain/mappers/getMapHero";
 import { HeroCard } from "../components/shared/HeroCard";
