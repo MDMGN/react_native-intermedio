@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Animated,
   useAnimatedValue,
-  Easing,
 } from "react-native";
 import { globalStyles } from "../themes/globalStyles";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";

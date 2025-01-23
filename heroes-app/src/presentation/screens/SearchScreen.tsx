@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
 import SearchInput from "../components/search/SearchInput";
-import { Hero } from "../../domain/models/heroe";
 import { ajax } from "../../config/helpers/ajax";
 import apiURL from "../../config/api/superHeroesApi";
 import type {
@@ -24,7 +23,6 @@ export default function SearchScreen() {
 
   const onChange = async (query: string) => {
     setError(false);
-    console.log(query);
     try {
       const resp = await ajax<SearchHeroResponseApi>(
         `${apiURL}/search/${query}`

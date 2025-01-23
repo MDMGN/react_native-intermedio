@@ -3,12 +3,11 @@ import { HeroResponseAPI } from "../../../infrastructure/interfaces/heroResponse
 import { getMoreHeroes } from "../../../domain/usescases/heroes/getMoreHeroes";
 import { AxiosHttpAdapter } from "../../../infrastructure/http/axios.http.adapter";
 import { HeroesRepository } from "../../../data/respositories/heroes.repository";
-import { AjaxHttpAdapter } from "../../../infrastructure/http/ajax.http.adapter";
 
 export default function useHeroes() {
   const [data, setData] = useState([] as HeroResponseAPI[]);
   const lastHeroID = useRef(1);
-  const httpAdapter = new AjaxHttpAdapter();
+  const httpAdapter = new AxiosHttpAdapter();
   const heroesRepository = new HeroesRepository(httpAdapter);
 
   const loadMore = async () => {
