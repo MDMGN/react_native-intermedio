@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { HttpAdapter } from "./http.adapter";
-import apiURL from "../../../../config/api/superHeroesApi";
+import apiURL from "../../config/api/superHeroesApi";
 
 export class AxiosHttpAdapter implements HttpAdapter {
   private axiosInstance: AxiosInstance;

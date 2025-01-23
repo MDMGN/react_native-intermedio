@@ -1,4 +1,4 @@
-import { ajax } from "../../../../config/helpers/ajax";
+import { ajax } from "../../config/helpers/ajax";
 import { HttpAdapter } from "./http.adapter";
 
 export class AjaxHttpAdapter implements HttpAdapter {
