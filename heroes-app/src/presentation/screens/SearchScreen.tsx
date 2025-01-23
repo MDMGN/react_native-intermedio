@@ -12,7 +12,6 @@ import SearchItem from "../components/search/SearchItem";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackProps } from "../navigation/StackGroup";
 import { getMapHero } from "../../domain/mappers/getMapHero";
-import { debounce } from "../../config/helpers/debounce";
 
 export default function SearchScreen() {
   const { setOptions, navigate } =
