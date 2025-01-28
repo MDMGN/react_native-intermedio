@@ -1,6 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { View, Text } from "react-native";
-import HomeScreen from "../screens/HomeScreen";
+import HeroesScreen from "../screens/HeroesScreen";
 import MarvelScreen from "../screens/MarvelScreen";
 import { lazy } from "react";
 import { colors } from "../themes/colors";
@@ -8,10 +7,11 @@ import { colors } from "../themes/colors";
 export type TopTabsProp = {
   ALL: undefined;
   MARVEL: undefined;
+  DC: undefined;
 };
 
 export default function TopTabs() {
-  const Top = createMaterialTopTabNavigator();
+  const Top = createMaterialTopTabNavigator<TopTabsProp>();
 
   return (
     <Top.Navigator
@@ -23,8 +23,9 @@ export default function TopTabs() {
         },
       }}
     >
-      <Top.Screen name="ALL" component={HomeScreen} />
-      <Top.Screen name="MARVEL" component={MarvelScreen} />
+      <Top.Screen name="ALL" component={HeroesScreen} />
+      <Top.Screen name="MARVEL" component={HeroesScreen} />
+      <Top.Screen name="DC" component={HeroesScreen} />
     </Top.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../screens/HeroesScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SearchScreen from "../screens/SearchScreen";
 import TopTabs from "./TopTabs";
