@@ -85,3 +85,24 @@ Claro, aquí tienes una versión corregida y mejor redactada de las instruccione
 - Cada `item` del `FlatList` debe ser una tarjeta que muestre:
   - El **título** del héroe.
   - Una **imagen** del héroe.
+
+### **8. Mis héroes en Drawer**
+
+- Instala y configura el `Drawer navigation` desde [React Navigation](https://reactnavigation.org/docs/getting-started).
+- Crea el componente `OptionsCard`:
+  - Este componente debe estar superpuesto (con `position: absolute`) en cada tarjeta del `FlatList`.
+  - Debe mostrar las siguientes opciones:
+    - Ver detalles.
+    - Guardar en Favoritos.
+  - Este componente se mostrará cuando se mantenga pulsada la tarjeta (usa los eventos `PressIn` y `PressOut`), y desaparecerá cuando se deje de presionar.
+  - La opción `Ver detalles` navegará a `HeroeScreen`.
+  - La opción `Guardar en favoritos` añadirá al héroe a una lista de héroes favoritos (usa un contexto global). Los héroes deben guardarse en almacenamiento local y gestionarse mediante reducers.
+- En el `Drawer`, agrega la opción `Mis héroes`.
+- Crea el componente `MyHero`:
+  - Mostrará la foto y el nombre del héroe.
+  - Tendrá un botón "Ver" (que navegará a `HeroeScreen`) y un botón "Eliminar" (que lo eliminará de la lista).
+- Al seleccionar la opción `Mis héroes` del `Drawer`, usa `FlatList` y `MyHero` para mostrar la lista de héroes favoritos almacenados en el contexto global.
+
+### **9. Soy el favorito**
+
+- Modifica el componente `HeroCard` para mostrar un corazón si el héroe mostrado está en la lista de héroes favoritos.
