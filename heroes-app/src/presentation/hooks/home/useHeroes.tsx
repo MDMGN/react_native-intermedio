@@ -10,6 +10,7 @@ const FILTER_SCREEN = {
   MARVEL: "Marvel Comics",
   DC: "DC Comics",
 };
+
 export default function useHeroes(publisher: keyof typeof FILTER_SCREEN) {
   const [data, setData] = useState([] as HeroResponseAPI[]);
   const lastHeroID = useRef(1);
@@ -27,6 +28,7 @@ export default function useHeroes(publisher: keyof typeof FILTER_SCREEN) {
     } else {
       newHeroes = await getMoreHeroes(lastHeroID, heroesRepository);
     }
+
     setData((prevValue) => [...prevValue, ...newHeroes]);
   };
 
@@ -34,9 +36,6 @@ export default function useHeroes(publisher: keyof typeof FILTER_SCREEN) {
     loadMore();
   }, []);
 
-  useEffect(() => {
-    console.log(data.map((hero) => hero.id));
-  }, [data]);
   return {
     data,
     loadMore,

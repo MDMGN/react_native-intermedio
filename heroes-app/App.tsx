@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Navigator from "./src/presentation/navigation/Navigator";
+import FavoritesProvider from "./src/presentation/contexts/FavoritesProvider";
 
 export default function App() {
-  return <Navigator />;
+  return (
+    <FavoritesProvider>
+      <Navigator />
+    </FavoritesProvider>
+  );
 }
 
 const styles = StyleSheet.create({

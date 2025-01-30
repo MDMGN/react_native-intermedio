@@ -6,6 +6,7 @@ import type { Hero } from "../models/heroe";
 
 export const getMapHero = (data: HeroResponseAPI | SearchItemResult): Hero => {
   return {
+    id: data.id,
     title: data.name,
     image: data.image.url,
     description: `

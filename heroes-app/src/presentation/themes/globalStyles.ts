@@ -7,6 +7,7 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   cardContainer: {
+    position: "relative",
     width: "80%",
     marginHorizontal: "20%",
     height: 300,
