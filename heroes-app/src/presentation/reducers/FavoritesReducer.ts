@@ -8,14 +8,13 @@ export enum Actions {
 
 export type Action = {
   type: Actions;
-  payload: Hero;
+  payload: Hero | Hero[];
 };
 
 export const FavoriteReducer = (state: Hero[], action: Action) => {
   switch (action.type) {
-    /*     case Actions.ADD_STATE_INITIAL:
-      if (action.payload instanceof Array) return action.payload; */
-    case Actions.ADD_FAVORITES:
+    case Actions.ADD_STATE_INITIAL:
+      if (action.payload instanceof Array) return action.payload;
       return [...state, action.payload];
     case Actions.DELETE_FAVORITES:
       if (typeof action.payload === "object") {
