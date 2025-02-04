@@ -5,17 +5,28 @@ import { HeroCard } from "../components/shared/HeroCard";
 import useHeroes from "../hooks/home/useHeroes";
 import { MaterialTopTabScreenProps } from "@react-navigation/material-top-tabs";
 import { TopTabsProp } from "../navigation/TopTabs";
-import { useContext } from "react";
+import { useContext, useReducer } from "react";
+import { Actions, FavoriteReducer } from "../reducers/FavoritesReducer";
+import { Hero } from "../../domain/models/heroe";
 import { FavoritesContext } from "../contexts/FavoritesProvider";
 
 export default function HeroesScreen({
   route,
 }: MaterialTopTabScreenProps<TopTabsProp>) {
   const { data, loadMore } = useHeroes(route.name);
-  const { favorites } = useContext(FavoritesContext);
+  const { favorites, dispatch } = useContext(FavoritesContext);
+
+  const handleAddFavorites = (hero: Hero) => {
+    dispatch({
+      payload: hero,
+      type: Actions.ADD_FAVORITES,
+    });
+  };
+
+  console.log({ favorites });
+
   return (
     <View style={globalStyles.container}>
-      <Text>{JSON.stringify(favorites)}</Text>
       <FlatList
         onEndReached={({ distanceFromEnd }) => {
           if (distanceFromEnd > 0) {
@@ -28,7 +39,9 @@ export default function HeroesScreen({
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => {
           const hero = getMapHero(item);
-          return <HeroCard hero={hero} />;
+          return (
+            <HeroCard hero={hero} handleAddFavorites={handleAddFavorites} />
+          );
         }}
       />
     </View>

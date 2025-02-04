@@ -1,37 +1,50 @@
-import { useEffect, useState } from "react";
-import { createContext } from "react";
+import {
+  createContext,
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { View, Text } from "react-native";
 import { Hero } from "../../domain/models/heroe";
+import { Action, Actions, FavoriteReducer } from "../reducers/FavoritesReducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type Favorite = {
+type FavoriteContext = {
   favorites: Hero[];
-  setFavorites: React.Dispatch<React.SetStateAction<Hero[]>>;
+  dispatch: Dispatch<Action>;
 };
 
-export const FavoritesContext = createContext({} as Favorite);
+export const FavoritesContext = createContext({} as FavoriteContext);
 
-export default function FavoritesProvider({
-  children,
-}: React.PropsWithChildren) {
-  const [favorites, setFavorites] = useState([] as Hero[]);
+export default function FavoritesProvider({ children }: PropsWithChildren) {
+  const [state, dispatch] = useReducer(FavoriteReducer, []);
+
+  /*   useEffect(() => {
+    const setFavorites = async () => {
+      await AsyncStorage.setItem("favorites", JSON.stringify(state));
+    };
+    setFavorites();
+  }, [state]);
 
   useEffect(() => {
     const getFavorites = async () => {
       const favorites = await AsyncStorage.getItem("favorites");
+
       if (favorites) {
-        setFavorites(JSON.parse(favorites));
+        dispatch({
+          type: Actions.ADD_STATE_INITIAL,
+          payload: JSON.parse(favorites),
+        });
       }
     };
     getFavorites();
-  }, []);
+  }, []); */
 
   return (
-    <FavoritesContext.Provider
-      value={{
-        favorites,
-        setFavorites,
-      }}
-    >
+    <FavoritesContext.Provider value={{ favorites: state, dispatch }}>
       {children}
     </FavoritesContext.Provider>
   );

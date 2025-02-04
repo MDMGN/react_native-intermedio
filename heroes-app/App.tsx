@@ -10,7 +10,6 @@ export default function App() {
     </FavoritesProvider>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
