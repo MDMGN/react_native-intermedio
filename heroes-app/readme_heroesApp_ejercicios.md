@@ -103,6 +103,21 @@ Claro, aquí tienes una versión corregida y mejor redactada de las instruccione
   - Tendrá un botón "Ver" (que navegará a `HeroeScreen`) y un botón "Eliminar" (que lo eliminará de la lista).
 - Al seleccionar la opción `Mis héroes` del `Drawer`, usa `FlatList` y `MyHero` para mostrar la lista de héroes favoritos almacenados en el contexto global.
 
-### **9. Soy el favorito**
+### 9. **Casos de uso, StorageAdapter y FavoriteHeroRepository**
 
-- Modifica el componente `HeroCard` para mostrar un corazón si el héroe mostrado está en la lista de héroes favoritos.
+- Crea un adaptador `StorageAdapter` en su capa correspondiente y su respectiva implementación con AsyncStorage.
+- Crea un repositorio `FavoriteHeroRepository` para obtener y almacenar los datos en AsyncStorage.
+- Desarrolla los casos de uso para obtener (todos o por ID) y guardar los héroes favoritos a través de `FavoriteHeroRepository`.
+- Modifica `FavoritesProvider` para implementar los casos de uso.
+
+### 10. **Mis héroes**
+
+- Crea una nueva pantalla llamada `MyHeroesScreen`.
+- Agrega una nueva ruta en `DrawGroup` para `MyHeroesScreen`.
+- Desarrolla un componente `MyHeroCard` que muestre el nombre, la imagen y los botones para ver detalles o eliminar al héroe de favoritos.
+- El botón **"Ver detalles"** debe navegar a la pantalla `HeroScreen` para mostrar información sobre el héroe seleccionado.
+- En `MyHeroesScreen`, renderiza todos los héroes favoritos almacenados localmente dentro de `MyHeroCard`.
+
+### 11. **Soy el favorito**
+
+- Modifica el componente `HeroCard` para mostrar un ícono de corazón si el héroe está en la lista de favoritos.
