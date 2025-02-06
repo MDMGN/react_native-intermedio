@@ -7,7 +7,7 @@ export interface HeroResponseAPI {
   appearance: Appearance;
   work: Work;
   connections: Connections;
-  image: Image;
+  images: Image;
 }
 export type SearchHeroResponseApi = {
   response: string;
@@ -40,7 +40,10 @@ export interface Connections {
 }
 
 export interface Image {
-  url: string;
+  xs: string;
+  md: string;
+  lg: string;
+  sm: string;
 }
 
 export interface Powerstats {

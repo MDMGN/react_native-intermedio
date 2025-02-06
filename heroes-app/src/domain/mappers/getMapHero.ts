@@ -6,9 +6,9 @@ import type { Hero } from "../models/heroe";
 
 export const getMapHero = (data: HeroResponseAPI | SearchItemResult): Hero => {
   return {
-    id: data.id,
+    id: data?.id,
     title: data.name,
-    image: data.image?.url,
+    image: data.images?.sm,
     description: `
               Eye Color :  ${
                 (data.appearance && data.appearance["eye-color"]) || "n/a"

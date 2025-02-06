@@ -22,17 +22,18 @@ export const FavoritesContext = createContext({} as FavoriteContext);
 export default function FavoritesProvider({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(FavoriteReducer, []);
 
-  /*   useEffect(() => {
-    const setFavorites = async () => {
+  useEffect(() => {
+    const updateFavorites = async () => {
       await AsyncStorage.setItem("favorites", JSON.stringify(state));
     };
-    setFavorites();
+    if (state.length) {
+      updateFavorites();
+    }
   }, [state]);
 
   useEffect(() => {
     const getFavorites = async () => {
       const favorites = await AsyncStorage.getItem("favorites");
-
       if (favorites) {
         dispatch({
           type: Actions.ADD_STATE_INITIAL,
@@ -41,7 +42,7 @@ export default function FavoritesProvider({ children }: PropsWithChildren) {
       }
     };
     getFavorites();
-  }, []); */
+  }, []);
 
   return (
     <FavoritesContext.Provider value={{ favorites: state, dispatch }}>

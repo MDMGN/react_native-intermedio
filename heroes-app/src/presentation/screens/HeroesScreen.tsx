@@ -23,10 +23,9 @@ export default function HeroesScreen({
     });
   };
 
-  console.log({ favorites });
-
   return (
     <View style={globalStyles.container}>
+      <Text>{JSON.stringify(favorites)}</Text>
       <FlatList
         onEndReached={({ distanceFromEnd }) => {
           if (distanceFromEnd > 0) {
