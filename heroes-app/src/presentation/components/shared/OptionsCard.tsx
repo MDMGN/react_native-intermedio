@@ -21,9 +21,7 @@ export default function OptionsCard({ options }: Props) {
       {options.map((option, i) => (
         <Pressable style={styles.btn} onPress={option.callback} key={i}>
           <View>
-            <Text style={{ color: "#000", textAlign: "center" }}>
-              {option.title}
-            </Text>
+            <Text style={styles.btnText}>{option.title}</Text>
           </View>
         </Pressable>
       ))}
@@ -34,7 +32,7 @@ export default function OptionsCard({ options }: Props) {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    backgroundColor: "#00000098",
+    backgroundColor: "rgba(0,0,0,.8)",
     height: "120%",
     width: "100%",
     alignItems: "center",
@@ -45,6 +43,12 @@ const styles = StyleSheet.create({
   btn: {
     width: "80%",
     height: 25,
-    backgroundColor: "#ddd",
+    backgroundColor: "#fff",
+    paddingVertical: 20,
+  },
+  btnText: {
+    color: "#000000",
+    textAlign: "center",
+    alignItems: "center",
   },
 });

@@ -18,28 +18,27 @@ export function HeroCard({ hero, handleAddFavorites }: Props) {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
 
   return (
-    <Pressable
-      onPressIn={() => setShow(true)}
-      onPressOut={() => setTimeout(() => setShow(false), 3000)}
-    >
-      <View style={globalStyles.cardContainer}>
-        {show && (
-          <OptionsCard
-            options={[
-              {
-                title: "Ver Detalles",
-                callback: () => navigate("HERO", hero),
-              },
-              {
-                title: "Añadir a favoritos",
-                callback: () => handleAddFavorites(hero),
-              },
-            ]}
-          />
-        )}
-        <Text style={globalStyles.title}>{hero.title}</Text>
+    <View style={globalStyles.cardContainer}>
+      <OptionsCard
+        options={[
+          {
+            title: "Ver Detalles",
+            callback: () => navigate("HERO", hero),
+          },
+          {
+            title: "Añadir a favoritos",
+            callback: () => handleAddFavorites(hero),
+          },
+        ]}
+      />
+      (
+      <Pressable
+        onPressIn={() => setShow(true)}
+        onPressOut={() => setTimeout(() => setShow(false), 3000)}
+      >
+        )<Text style={globalStyles.title}>{hero.title}</Text>
         <Image style={[globalStyles.cardImage]} source={{ uri: hero.image }} />
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
