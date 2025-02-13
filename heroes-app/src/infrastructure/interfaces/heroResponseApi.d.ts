@@ -9,11 +9,8 @@ export interface HeroResponseAPI {
   connections: Connections;
   images: Image;
 }
-export type SearchHeroResponseApi = {
-  response: string;
-  "result-for": string;
-  results: Array<SearchItemResult>;
-};
+export type SearchHeroResponseApi = Array<SearchItemResult>;
+
 export type SearchItemResult = Omit<HeroResponseAPI, "response">;
 export interface Appearance {
   gender: string;

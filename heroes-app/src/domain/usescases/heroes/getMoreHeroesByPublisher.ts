@@ -9,12 +9,18 @@ export async function getMoreHeroesByPublisher(
   let newHeroesByPublisher: HeroResponseAPI[] = [];
 
   while (newHeroesByPublisher.length < 5 && lastHeroId.current < 732) {
-    const newHeroe = await heroesRepository.findById(`${lastHeroId.current++}`);
-
-    if (newHeroe.biography?.publisher === publisher) {
-      newHeroesByPublisher.push(newHeroe);
+    try {
+      const newHeroe = await heroesRepository.findById(
+        `${lastHeroId.current++}`
+      );
+      if (newHeroe?.biography?.publisher === publisher) {
+        newHeroesByPublisher.push(newHeroe);
+        console.log({ newHeroe });
+      }
+    } catch (e) {
+      lastHeroId.current++;
     }
   }
-
+  console.log("exit");
   return newHeroesByPublisher;
 }

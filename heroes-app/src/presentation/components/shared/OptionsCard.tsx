@@ -1,11 +1,4 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 type Option = {
   title: string;
@@ -33,7 +26,7 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     backgroundColor: "rgba(0,0,0,.8)",
-    height: "120%",
+    height: "115%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",

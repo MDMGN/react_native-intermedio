@@ -26,8 +26,7 @@ export default function SearchScreen() {
       const resp = await ajax<SearchHeroResponseApi>(
         `${apiURL}/search/${query}`
       );
-      if (resp.response === "error") throw new Error("error");
-      setData(resp.results);
+      setData(resp);
       setError(false);
     } catch (err) {
       setError(true);
