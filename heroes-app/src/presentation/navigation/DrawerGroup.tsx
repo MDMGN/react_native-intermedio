@@ -1,20 +1,16 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import BottomTabs from "./BottomTabs";
 
-type DrawerProps = {
-  BottomTabs: undefined;
-};
+type DrawerProps = {};
 
-const Drawer = createDrawerNavigator<DrawerProps>();
+const Drawer = createDrawerNavigator();
 export default function DrawerGroup() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
-        name="BottomTabs"
+        name="Drawer"
+        options={{ title: "Inicio" }}
         component={BottomTabs}
-        options={{
-          headerShown: false,
-        }}
       />
     </Drawer.Navigator>
   );

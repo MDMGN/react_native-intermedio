@@ -7,13 +7,16 @@ import {
   useReducer,
   useState,
 } from "react";
-import { View, Text } from "react-native";
 import { Hero } from "../../domain/models/heroe";
 import { Action, Actions, FavoriteReducer } from "../reducers/FavoritesReducer";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setFavorites } from "../../domain/usescases/favorites/setFavorites";
+import getFavorites from "../../domain/usescases/favorites/getFavorites";
+import { FavoritesRepository } from "../../data/respositories/favorites.repository";
+import { AsyncStorageAdapter } from "../../infrastructure/storage/asyncstorage.storage.adapter";
 
 type FavoriteContext = {
   favorites: Hero[];
+  error: boolean;
   dispatch: Dispatch<Action>;
 };
 
@@ -21,31 +24,22 @@ export const FavoritesContext = createContext({} as FavoriteContext);
 
 export default function FavoritesProvider({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(FavoriteReducer, []);
+  const [error, setError] = useState(false);
+  const storageAdapter = new AsyncStorageAdapter();
+  const favoritesRepository = new FavoritesRepository(storageAdapter);
 
   useEffect(() => {
-    const updateFavorites = async () => {
-      await AsyncStorage.setItem("favorites", JSON.stringify(state));
-    };
     if (state.length) {
-      updateFavorites();
+      setFavorites(favoritesRepository, state, setError);
     }
   }, [state]);
 
   useEffect(() => {
-    const getFavorites = async () => {
-      const favorites = await AsyncStorage.getItem("favorites");
-      if (favorites) {
-        dispatch({
-          type: Actions.ADD_STATE_INITIAL,
-          payload: JSON.parse(favorites),
-        });
-      }
-    };
-    getFavorites();
+    getFavorites(setError, dispatch, favoritesRepository);
   }, []);
 
   return (
-    <FavoritesContext.Provider value={{ favorites: state, dispatch }}>
+    <FavoritesContext.Provider value={{ favorites: state, error, dispatch }}>
       {children}
     </FavoritesContext.Provider>
   );
