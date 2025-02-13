@@ -1,8 +1,7 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import HeroesScreen from "../screens/HeroesScreen";
-import MarvelScreen from "../screens/MarvelScreen";
-import { lazy } from "react";
 import { colors } from "../themes/colors";
+import DrawerGroup from "./DrawerGroup";
 
 export type TopTabsProp = {
   ALL: undefined;
@@ -16,14 +15,14 @@ export default function TopTabs() {
   return (
     <Top.Navigator
       screenOptions={{
-        lazy: true,
         tabBarScrollEnabled: true,
+        animationEnabled: false,
         tabBarStyle: {
           backgroundColor: colors.secondary,
         },
       }}
     >
-      <Top.Screen name="ALL" component={HeroesScreen} />
+      <Top.Screen name="ALL" component={DrawerGroup} />
       <Top.Screen name="MARVEL" component={HeroesScreen} />
       <Top.Screen name="DC" component={HeroesScreen} />
     </Top.Navigator>

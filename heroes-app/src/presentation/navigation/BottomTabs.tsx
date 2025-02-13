@@ -19,7 +19,6 @@ export default function BottomTabs() {
         component={TopTabs}
         options={{
           tabBarIcon: ({}) => <AntDesign name="home" size={24} color="black" />,
-          headerShown: false,
         }}
       />
       <BottomTab.Screen

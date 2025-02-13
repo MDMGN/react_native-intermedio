@@ -13,7 +13,7 @@ export default function DrawerGroup() {
         name="BottomTabs"
         component={BottomTabs}
         options={{
-          title: "Home",
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
