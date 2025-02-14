@@ -1,9 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Hero } from "../../domain/models/heroe";
 import { StorageAdapter } from "./storage.adapter";
 
-export class AsyncStorageAdapter implements StorageAdapter<Hero> {
-  async get(key: string): Promise<Hero[]> {
+export class AsyncStorageAdapter<T> implements StorageAdapter<T> {
+  async get(key: string): Promise<T> {
     const result = await AsyncStorage.getItem(key);
     return result ? JSON.parse(result) : [];
   }

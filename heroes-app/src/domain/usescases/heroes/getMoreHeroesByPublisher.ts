@@ -21,6 +21,5 @@ export async function getMoreHeroesByPublisher(
       lastHeroId.current++;
     }
   }
-  console.log("exit");
   return newHeroesByPublisher;
 }

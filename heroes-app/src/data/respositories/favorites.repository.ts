@@ -3,7 +3,7 @@ import { Hero } from "../../domain/models/heroe";
 import { StorageAdapter } from "../../infrastructure/storage/storage.adapter";
 
 export class FavoritesRepository {
-  constructor(private storageAdapter: StorageAdapter<Favorite>) {}
+  constructor(private storageAdapter: StorageAdapter<Favorite[]>) {}
   async get(key: string) {
     const result = await this.storageAdapter.get(key);
     return result;
