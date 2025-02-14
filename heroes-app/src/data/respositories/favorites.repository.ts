@@ -1,5 +1,4 @@
 import { Favorite } from "../../domain/models/favorite";
-import { Hero } from "../../domain/models/heroe";
 import { StorageAdapter } from "../../infrastructure/storage/storage.adapter";
 
 export class FavoritesRepository {
