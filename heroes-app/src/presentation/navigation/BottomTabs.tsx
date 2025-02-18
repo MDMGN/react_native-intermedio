@@ -3,9 +3,10 @@ import HomeScreen from "../screens/HeroesScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SearchScreen from "../screens/SearchScreen";
 import TopTabs from "./TopTabs";
+import DrawerGroup from "./DrawerGroup";
 
 type BottomProps = {
-  HOME: undefined;
+  Home: undefined;
   SEARCH: undefined;
 };
 
@@ -15,9 +16,10 @@ export default function BottomTabs() {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
-        name="HOME"
-        component={TopTabs}
+        name="Home"
+        component={DrawerGroup}
         options={{
+          headerShown: false,
           tabBarIcon: ({}) => <AntDesign name="home" size={24} color="black" />,
         }}
       />
@@ -25,7 +27,8 @@ export default function BottomTabs() {
         name="SEARCH"
         component={SearchScreen}
         options={{
-          title: "",
+          title: "Search",
+          headerTitle: "",
           tabBarIcon: ({}) => (
             <AntDesign name="search1" size={24} color="black" />
           ),

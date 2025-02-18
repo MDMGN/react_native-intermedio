@@ -51,7 +51,7 @@ export default function StackGroup() {
     >
       <Stack.Screen
         name="HOME"
-        component={DrawerGroup}
+        component={BottomTabs}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="HERO" component={HeroeScreen} />
