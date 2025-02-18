@@ -1,7 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import BottomTabs from "./BottomTabs";
-import StackGroup from "./StackGroup";
 import TopTabs from "./TopTabs";
+import FavoritesScreen from "../screens/FavoritesScreen";
 
 type DrawerProps = {};
 
@@ -10,6 +9,7 @@ export default function DrawerGroup() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Home" component={TopTabs} />
+      <Drawer.Screen name="Favorites" component={FavoritesScreen} />
     </Drawer.Navigator>
   );
 }

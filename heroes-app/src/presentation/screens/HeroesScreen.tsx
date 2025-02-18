@@ -5,8 +5,8 @@ import { HeroCard } from "../components/shared/HeroCard";
 import useHeroes from "../hooks/home/useHeroes";
 import { MaterialTopTabScreenProps } from "@react-navigation/material-top-tabs";
 import { TopTabsProp } from "../navigation/TopTabs";
-import { useContext, useReducer } from "react";
-import { Actions, FavoriteReducer } from "../reducers/FavoritesReducer";
+import { useContext } from "react";
+import { Actions } from "../reducers/FavoritesReducer";
 import { Hero } from "../../domain/models/heroe";
 import { FavoritesContext } from "../contexts/FavoritesProvider";
 
@@ -37,8 +37,13 @@ export default function HeroesScreen({
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => {
           const hero = getMapHero(item);
+          const visible = favorites.some((favorite) => favorite.id === hero.id);
           return (
-            <HeroCard hero={hero} handleAddFavorites={handleAddFavorites} />
+            <HeroCard
+              hero={hero}
+              handleAddFavorites={handleAddFavorites}
+              visible={visible}
+            />
           );
         }}
       />

@@ -11,7 +11,9 @@ export interface HeroResponseAPI {
 }
 export type SearchHeroResponseApi = Array<SearchItemResult>;
 
-export type SearchItemResult = Omit<HeroResponseAPI, "response">;
+export type SearchItemResult = Omit<HeroResponseAPI, "response", "images"> & {
+  image: { url: string };
+};
 export interface Appearance {
   gender: string;
   race: string;

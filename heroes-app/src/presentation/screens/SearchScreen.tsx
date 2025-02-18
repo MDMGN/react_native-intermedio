@@ -3,7 +3,7 @@ import { useLayoutEffect, useState } from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
 import SearchInput from "../components/search/SearchInput";
 import { ajax } from "../../config/helpers/ajax";
-import apiURL from "../../config/api/superHeroesApi";
+import apiURL from "../../config/api/superHeroesApiO";
 import type {
   SearchHeroResponseApi,
   SearchItemResult,

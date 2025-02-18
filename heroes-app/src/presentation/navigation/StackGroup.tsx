@@ -2,11 +2,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabs from "./BottomTabs";
 import HeroeScreen from "../screens/HeroeScreen";
 import { Hero } from "../../domain/models/heroe";
-import { Easing, useAnimatedValue } from "react-native";
-import DrawerGroup from "./DrawerGroup";
+import { Easing } from "react-native";
 
 export type StackProps = {
-  HOME: undefined;
+  BottomTabs: undefined;
   HERO: Hero;
 };
 
@@ -50,7 +49,7 @@ export default function StackGroup() {
       }}
     >
       <Stack.Screen
-        name="HOME"
+        name="BottomTabs"
         component={BottomTabs}
         options={{ headerShown: false }}
       />

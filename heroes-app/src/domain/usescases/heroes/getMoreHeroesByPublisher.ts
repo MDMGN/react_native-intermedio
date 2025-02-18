@@ -15,7 +15,6 @@ export async function getMoreHeroesByPublisher(
       );
       if (newHeroe?.biography?.publisher === publisher) {
         newHeroesByPublisher.push(newHeroe);
-        console.log({ newHeroe });
       }
     } catch (e) {
       lastHeroId.current++;

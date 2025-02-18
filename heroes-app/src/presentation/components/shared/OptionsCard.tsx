@@ -35,13 +35,15 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: "80%",
-    height: 25,
     backgroundColor: "#fff",
-    paddingVertical: 20,
+    paddingVertical: 15,
+    borderRadius: 20,
   },
   btnText: {
     color: "#000000",
     textAlign: "center",
     alignItems: "center",
+    fontWeight: "500",
+    fontSize: 15,
   },
 });
