@@ -7,39 +7,60 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { StackProps } from "../../navigation/StackGroup";
 import { Hero } from "../../../domain/models/heroe";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FavoritesContext } from "../../contexts/FavoritesProvider";
+import { Actions } from "../../reducers/FavoritesReducer";
 
 type Props = {
   hero: Hero;
   handleAddFavorites: (hero: Hero) => void;
-  visible: boolean;
 };
 
-export function HeroCard({ hero, handleAddFavorites, visible }: Props) {
+export function HeroCard({ hero, handleAddFavorites }: Props) {
   const [show, setShow] = useState(false);
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
+  const [visible, setVisible] = useState(false);
+  const { favorites, dispatch } = useContext(FavoritesContext);
+
+  useEffect(() => {
+    const visible = favorites.some((favorite) => favorite.id === hero.id);
+    setVisible(visible);
+  }, [favorites]);
 
   return (
     <View style={globalStyles.cardContainer}>
+      {visible && <FontAwesome5 name="heart" size={24} color="black" />}
       {show && (
         <OptionsCard
-          options={[
-            {
-              title: "Ver Detalles",
-              callback: () => navigate("HERO", hero),
-            },
-            {
-              title: "Añadir a favoritos",
-              callback: () => handleAddFavorites(hero),
-            },
-          ]}
+          options={
+            !visible
+              ? [
+                  {
+                    title: "Ver Detalles",
+                    callback: () => navigate("HERO", hero),
+                  },
+                  {
+                    title: "Añadir a favoritos",
+                    callback: () => handleAddFavorites(hero),
+                  },
+                ]
+              : [
+                  {
+                    title: "Eliminar de favoritos",
+                    callback: () =>
+                      dispatch({
+                        payload: hero,
+                        type: Actions.DELETE_FAVORITES,
+                      }),
+                  },
+                ]
+          }
         />
       )}
       <Pressable
         onPressIn={() => setShow(true)}
         onPressOut={() => setTimeout(() => setShow(false), 3000)}
       >
-        {visible && <FontAwesome5 name="heart" size={24} color="black" />}
         <Text style={globalStyles.title}>{hero.title}</Text>
         <Image style={[globalStyles.cardImage]} source={{ uri: hero.image }} />
       </Pressable>

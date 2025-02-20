@@ -9,7 +9,10 @@ export interface HeroResponseAPI {
   connections: Connections;
   images: Image;
 }
-export type SearchHeroResponseApi = Array<SearchItemResult>;
+export type SearchHeroResponseApi = {
+  response: "succes" | "error";
+  results: Array<SearchItemResult>;
+};
 
 export type SearchItemResult = Omit<HeroResponseAPI, "response", "images"> & {
   image: { url: string };

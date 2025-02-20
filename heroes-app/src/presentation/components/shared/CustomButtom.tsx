@@ -1,37 +1,49 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
-type Props = {
+interface Props {
   width?: number;
-  height: number;
+  height?: number;
   backgroundColor?: string;
   textColor?: string;
   textSize?: number;
   content: string | React.ReactNode;
   onPress: () => void;
-};
-export default function CustomButtom({
-  textColor,
-  textSize,
+  borderRadius?: number;
+}
+
+export default function CustomButton({
+  width = 150,
+  height = 50,
   backgroundColor,
-  height,
-  width,
-  onPress,
+  textColor,
+  textSize = 16,
   content,
+  onPress,
+  borderRadius = 10,
 }: Props) {
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
-      style={{ backgroundColor: backgroundColor ?? "#fff", width, height }}
+      style={[styles.button, { backgroundColor, width, height, borderRadius }]}
+      activeOpacity={0.7}
     >
-      <Text
-        style={{
-          color: textColor ?? "#000",
-          fontSize: textSize ?? 18,
-        }}
-      >
+      <Text style={[styles.text, { color: textColor, fontSize: textSize }]}>
         {content}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    elevation: 3,
+  },
+  text: {
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});

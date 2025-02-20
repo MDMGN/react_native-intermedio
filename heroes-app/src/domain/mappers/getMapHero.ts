@@ -8,7 +8,7 @@ export const getMapHero = (data: HeroResponseAPI | SearchItemResult): Hero => {
   return {
     id: data?.id,
     title: data.name,
-    image: data.images?.sm,
+    image: data.images?.sm ?? data.image.url,
     description: `
               Eye Color :  ${
                 (data.appearance && data.appearance["eye-color"]) || "n/a"

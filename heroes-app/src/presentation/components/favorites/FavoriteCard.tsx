@@ -16,18 +16,20 @@ type Props = {
 export default function FavoriteCard({ hero }: Props) {
   const { navigate } = useNavigation<StackNavigationProp<StackProps>>();
   const { dispatch, favorites } = useContext(FavoritesContext);
-  console.log({ favorites });
   return (
     <View style={globalStyles.cardContainer}>
       <View
         style={{
           width: "100%",
+          height: "100%",
           position: "absolute",
-          backgroundColor: "rgba(0,0,0,.7)",
+          backgroundColor: "none",
           flexDirection: "row",
           alignSelf: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           gap: 25,
+          zIndex: 5,
+          elevation: 5,
         }}
       >
         <CustomButtom

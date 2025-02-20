@@ -12,6 +12,7 @@ import SearchItem from "../components/search/SearchItem";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackProps } from "../navigation/StackGroup";
 import { getMapHero } from "../../domain/mappers/getMapHero";
+import { debounce } from "../../config/helpers/debounce";
 
 export default function SearchScreen() {
   const { setOptions, navigate } =
@@ -20,18 +21,22 @@ export default function SearchScreen() {
   const [error, setError] = useState(false);
   const [data, setData] = useState([] as SearchItemResult[]);
 
-  const onChange = async (query: string) => {
+  const handleSearch = async (query: string) => {
     setError(false);
     try {
       const resp = await ajax<SearchHeroResponseApi>(
         `${apiURL}/search/${query}`
       );
-      setData(resp);
+      if (resp.response == "error") throw new Error("Character not found");
+      setData(resp.results);
       setError(false);
     } catch (err) {
+      console.log({ err });
       setError(true);
     }
   };
+
+  const onChange: (query: string) => void = debounce(handleSearch, 300);
 
   useLayoutEffect(() => {
     setOptions({

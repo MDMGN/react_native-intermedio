@@ -37,13 +37,8 @@ export default function HeroesScreen({
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => {
           const hero = getMapHero(item);
-          const visible = favorites.some((favorite) => favorite.id === hero.id);
           return (
-            <HeroCard
-              hero={hero}
-              handleAddFavorites={handleAddFavorites}
-              visible={visible}
-            />
+            <HeroCard hero={hero} handleAddFavorites={handleAddFavorites} />
           );
         }}
       />
