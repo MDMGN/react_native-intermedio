@@ -43,6 +43,7 @@ export default function SearchScreen() {
       headerRight: () => <SearchInput onChange={onChange} />,
     });
   }, []);
+
   return (
     <View>
       {error ? (
