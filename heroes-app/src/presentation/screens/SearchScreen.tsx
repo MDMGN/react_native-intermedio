@@ -21,7 +21,7 @@ export default function SearchScreen() {
   const [error, setError] = useState(false);
   const [data, setData] = useState([] as SearchItemResult[]);
 
-  const handleSearch = async (query: string) => {
+  const onChange = async (query: string) => {
     setError(false);
     try {
       const resp = await ajax<SearchHeroResponseApi>(
@@ -35,8 +35,6 @@ export default function SearchScreen() {
       setError(true);
     }
   };
-
-  const onChange: (query: string) => void = debounce(handleSearch, 300);
 
   useLayoutEffect(() => {
     setOptions({
