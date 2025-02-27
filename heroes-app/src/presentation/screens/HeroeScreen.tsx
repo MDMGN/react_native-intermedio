@@ -55,6 +55,7 @@ export default function HeroeScreen() {
         <Text style={globalStyles.title}>{title}</Text>
       </Animated.View>
       <ScrollView
+      
         scrollEventThrottle={20}
         contentContainerStyle={{
           gap: 20,
